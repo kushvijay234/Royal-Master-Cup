@@ -3,5 +3,16 @@
   padding:0px;
   margin: 0px;
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 24px;
 }
 
+/* header */
+div#navbarNavAltMarkup {
+  justify-content: end;
+}
+
+a.nav-link:hover {
+  background-color: orangered;
+  border-radius: 5px;
+  color: white;
+}
