@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IV Royal Master Cup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobilestyle.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+    </style>
+    </head>
+<body>
+  <div class="container">
+    <h1>Form Example</h1>
+    <form id="myForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" placeholder="Enter your age" required>
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight</label>
+        <input type="number" class="form-control" id="weight" placeholder="Enter your weight" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Generate a unique registration number
+      function generateRegistrationNo() {
+        var timestamp = Date.now().toString(); // Generate a timestamp
+        var randomNum = Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random number
+        return timestamp + randomNum; // Concatenate timestamp and random number
+      }
+
+      // Submit form event
+      $("#myForm").submit(function(event) {
+        event.preventDefault();
+
+        // Get form values
+        var name = $("#name").val();
+        var age = $("#age").val();
+        var weight = $("#weight").val();
+
+        // Create JSON object
+        var data = {
+          "registrationNo": generateRegistrationNo(),
+          "name": name,
+          "age": age,
+          "weight": weight
+        };
+
+        // Retrieve existing data from local storage
+        var existingData = localStorage.getItem("formData");
+        if (existingData) {
+          existingData = JSON.parse(existingData);
+          existingData.push(data);
+        } else {
+          existingData = [data];
+        }
+
+        // Save data to local storage
+        localStorage.setItem("formData", JSON.stringify(existingData));
+
+        // Clear form fields
+        $("#name").val("");
+        $("#age").val("");
+        $("#weight").val("");
+
+        // Display registration number in an alert
+        alert("Data saved successfully!\nRegistration No: " + data.registrationNo);
+      });
+    });
+  </script>
+</body>
+</html>
