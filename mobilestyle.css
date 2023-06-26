@@ -1,5 +1,5 @@
 @media (max-width:480px) {
-    a.navbar-brand {
+    .navbar-brand {
         color: orangered!important;
         font-weight: 700;
         font-size: 45px;
